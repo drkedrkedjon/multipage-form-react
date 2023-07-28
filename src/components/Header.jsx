@@ -13,12 +13,12 @@ export default function Header() {
           <p>Weather App</p>
         </div>
 
-        <div className="header-menu">
+        <nav className="header-menu">
           <button className="menu-btn">
             <Menu size={30} />
           </button>
           {isMenuOpen && (
-            <Drawer>
+            <Drawer handleCloseMenu={setIsMenuOpen}>
               <ul>
                 <li>
                   <a href="">Home</a>
@@ -35,7 +35,7 @@ export default function Header() {
               </ul>
             </Drawer>
           )}
-        </div>
+        </nav>
       </div>
     </header>
   );
