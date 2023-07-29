@@ -112,6 +112,7 @@ meter {
 :root {
   /* Colores */
   --color-white: #fff;
+  --color-black: #222;
   --color-acentado: #9900ff;
   --color-green: #66ff00;
 
@@ -172,6 +173,70 @@ header {
   cursor: pointer;
   transition: scale 0.2s ease-in-out;
 }
-.menu-btn :hover {
+.menu-btn:hover {
   scale: 1.1;
+}
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: right;
+}
+.nav-list a:hover {
+  color: var(--color-acentado);
+}
+
+/* ******************** */
+/* DRAWER */
+/* ******************** */
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+
+.drawer-container {
+  position: fixed;
+  inset: 0;
+  padding: 16px;
+}
+.drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: hsl(280deg 100% 30% / 0.75);
+  backdrop-filter: blur(3px);
+  animation: fadeIn 850ms cubic-bezier(0.14, 0.78, 0.36, 1);
+}
+.drawer-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-white);
+  color: var(--color-black);
+  width: 50%;
+  max-width: 300px;
+  min-width: 200px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  animation: slideIn 500ms cubic-bezier(0.14, 0.78, 0.36, 1);
+}
+.drawer-close-btn {
+  background-color: var(--color-acentado);
+  padding: 0.5rem 1rem;
+  color: var(--color-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.2rem;
+  cursor: pointer;
 }

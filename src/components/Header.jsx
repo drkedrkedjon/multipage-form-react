@@ -14,12 +14,12 @@ export default function Header() {
         </div>
 
         <nav className="header-menu">
-          <button className="menu-btn">
+          <button onClick={setIsMenuOpen} className="menu-btn">
             <Menu size={30} />
           </button>
           {isMenuOpen && (
             <Drawer handleCloseMenu={setIsMenuOpen}>
-              <ul>
+              <ul className="nav-list">
                 <li>
                   <a href="">Home</a>
                 </li>
