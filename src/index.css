@@ -141,6 +141,15 @@ body {
   font-family: var(--font-family);
   font-size: var(--ff-400);
 }
+:focus-visible {
+  outline: 4px solid var(--color-green);
+  outline-offset: 3px;
+  border-radius: 3%;
+}
+/* html, */
+body {
+  height: 100%;
+}
 /* ******************** */
 /* HEADER */
 /* ******************** */
@@ -156,14 +165,14 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
+  padding: 0.8rem 1.2rem;
   flex-basis: 87rem;
 }
 .header-logo {
   display: flex;
   align-items: center;
   gap: 1rem;
-  font-size: var(--ff-600);
+  font-size: var(--ff-500);
 }
 .header-menu {
   display: flex;
@@ -184,6 +193,14 @@ header {
 }
 .nav-list a:hover {
   color: var(--color-acentado);
+}
+@media (min-width: 40rem) {
+  .header-container {
+    padding: 1.5rem 2rem;
+  }
+  .header-logo {
+    font-size: var(--ff-600);
+  }
 }
 
 /* ******************** */

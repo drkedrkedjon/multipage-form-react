@@ -9,28 +9,31 @@ export default function Header() {
     <header>
       <div className="header-container">
         <div className="header-logo">
-          <Umbrella strokeWidth={3} color="var(--color-green)" size={30} />
+          <Umbrella strokeWidth={3} color="var(--color-green)" size={26} />
           <p>Weather App</p>
         </div>
 
         <nav className="header-menu">
           <button onClick={setIsMenuOpen} className="menu-btn">
-            <Menu size={30} />
+            <Menu size={26} />
           </button>
           {isMenuOpen && (
             <Drawer handleCloseMenu={setIsMenuOpen}>
               <ul className="nav-list">
                 <li>
-                  <a href="">Home</a>
+                  <a href="">My portafolio</a>
                 </li>
                 <li>
-                  <a href="">Gallery</a>
+                  <a href="">LinkedIn</a>
                 </li>
                 <li>
-                  <a href="">Photographers</a>
+                  <a href="">Contact form</a>
                 </li>
                 <li>
-                  <a href="">Submit Work</a>
+                  <p>
+                    jkhg sghjsd sdfgh sdfhg sdfgshdfg sdfhg sdfgskldjfg sdjhfg
+                    sdflgjhsdf sdkfhg sdfg sd
+                  </p>
                 </li>
               </ul>
             </Drawer>
