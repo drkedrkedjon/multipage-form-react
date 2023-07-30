@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="footer-container">
         <p>
           Created by{" "}
-          <a href="" target="_blank">
+          <a href="https://bubulazy.com">
             {" "}
             <span>Sasa</span>
           </a>

@@ -11,7 +11,7 @@ export default function JobCard({ item }) {
           <span>Salary: </span>
           {item.salary}
         </p>
-        <button>Apply to this job</button>
+        <button aria-label="Apply to this job">Apply to this job</button>
       </div>
     </div>
   );

@@ -14,7 +14,11 @@ export default function Header() {
         </div>
 
         <nav className="header-menu">
-          <button onClick={setIsMenuOpen} className="menu-btn">
+          <button
+            aria-label="Open Navigation"
+            onClick={setIsMenuOpen}
+            className="menu-btn"
+          >
             <Menu size={26} />
           </button>
           {isMenuOpen && (
