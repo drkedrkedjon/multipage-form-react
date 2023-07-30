@@ -280,6 +280,7 @@ header {
 
 .job-offers {
   align-self: center;
+  width: 90vw;
   max-width: 87rem;
   margin: 3rem 3vw;
 }
@@ -300,9 +301,13 @@ header {
   margin-block: 3rem;
   gap: 2rem;
 }
-.job-offers-card {
+.job-offers-container-query {
+  display: flex;
   flex-basis: 340px;
   flex-grow: 1;
+  container-type: inline-size;
+}
+.job-offers-card {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -311,6 +316,17 @@ header {
   padding: 2rem;
   border-radius: 0.5rem;
   box-shadow: 5px 15px 0px 0 var(--color-shadow);
+}
+@container (min-width: 40rem) {
+  .job-offers-card {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-inline: 15vw;
+  }
+  .job-offers-card button {
+    margin-left: auto;
+  }
 }
 .job-offers-card :last-child {
   margin-top: auto;
