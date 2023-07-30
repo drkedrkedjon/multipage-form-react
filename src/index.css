@@ -153,10 +153,12 @@ body {
   outline-offset: 3px;
   border-radius: 3%;
 }
-/* html, */
-/* body {
+html,
+body,
+#root,
+.app-container {
   height: 100%;
-} */
+}
 
 .app-container {
   display: flex;
@@ -238,11 +240,13 @@ header {
   position: fixed;
   inset: 0;
   padding: 16px;
+  z-index: 1000;
 }
 .drawer-backdrop {
   position: absolute;
   inset: 0;
   background: hsl(280deg 100% 30% / 0.75);
+  -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
   animation: fadeIn 850ms cubic-bezier(0.14, 0.78, 0.36, 1);
 }
@@ -282,7 +286,7 @@ header {
   align-self: center;
   width: 90vw;
   max-width: 87rem;
-  margin: 3rem 3vw;
+  margin: 3rem 3vw 1rem;
 }
 .job-offers h1 {
   font-size: var(--ff-900);
@@ -351,4 +355,17 @@ header {
 }
 .job-offers-card button:hover {
   scale: 1.05;
+}
+/* ***************** */
+/* FOOTER */
+/* ***************** */
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-acentado);
+  color: var(--color-white);
+  padding: 1rem;
+  margin-top: auto;
 }

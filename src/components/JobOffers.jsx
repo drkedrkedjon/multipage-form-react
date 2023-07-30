@@ -1,28 +1,18 @@
+import { useState } from "react";
 import { data } from "../assets/data";
+import JobCard from "./JobCard";
 
 export default function JobOffers() {
+  const [isApplying, setIsApplying] = useState(false);
+
+  const jobCardMapeo = data.map((item) => {
+    return <JobCard item={item} key={item.id} />;
+  });
+
   return (
     <main className="job-offers">
       <h1>Job Offers</h1>
-      <div className="job-offers-container">
-        {data.map((item) => {
-          return (
-            <div className="job-offers-container-query" key={item.id}>
-              <div className="job-offers-card">
-                <h2>{item.title}</h2>
-                <p>
-                  <span>Description: </span> {item.description}
-                </p>
-                <p>
-                  <span>Salary: </span>
-                  {item.salary}
-                </p>
-                <button>Apply to this job</button>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <div className="job-offers-container">{!isApplying && jobCardMapeo}</div>
     </main>
   );
 }
