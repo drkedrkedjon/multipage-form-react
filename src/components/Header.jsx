@@ -10,7 +10,7 @@ export default function Header() {
       <div className="header-container">
         <div className="header-logo">
           <Umbrella strokeWidth={3} color="var(--color-green)" size={26} />
-          <p>Weather App</p>
+          <span>Weather App</span>
         </div>
 
         <nav className="header-menu">
