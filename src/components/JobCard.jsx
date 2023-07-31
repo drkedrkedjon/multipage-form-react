@@ -12,6 +12,7 @@ export default function JobCard({ applyToOffer, item }) {
           {item.salary}
         </p>
         <button
+          className="btn-green"
           onClick={() => applyToOffer(item.id)}
           aria-label="Apply to this job"
         >

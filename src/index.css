@@ -168,6 +168,21 @@ p {
   line-height: 1.6;
 }
 
+.btn-green {
+  background-color: var(--color-green);
+  color: var(--color-black);
+  font-weight: 700;
+  padding: 1rem 2rem;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  text-align: center;
+  transition: scale 0.2s ease-in-out;
+  margin-top: 2rem;
+}
+.btn-green:hover {
+  scale: 1.03;
+}
+
 /* ******************** */
 /* HEADER */
 /* ******************** */
@@ -298,8 +313,6 @@ header {
 }
 
 .job-offers-container {
-  /* display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); */
   display: flex;
   flex-wrap: wrap;
   margin-block: 3rem;
@@ -343,19 +356,72 @@ header {
 .job-offers-card span {
   color: var(--color-green);
 }
-.job-offers-card button {
-  background-color: var(--color-green);
-  color: var(--color-black);
+/* ***************** */
+/* PASOS */
+/* ***************** */
+.pasos-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  background-color: var(--color-purple);
+  color: var(--color-white);
+  padding: 1rem;
+  border-radius: 0.4rem;
+}
+.pasos-left > :not(:last-child) {
+  margin-bottom: 1rem;
+}
+.pasos-left h2 {
+  font-size: var(--ff-500);
   font-weight: 700;
-  padding: 1rem 2rem;
+  color: var(--color-green);
+}
+.pasos-left h3 {
+  font-size: var(--ff-700);
+  font-weight: 700;
+}
+.pasos-small-p {
+  font-size: var(--ff-300);
+}
+.pasos-small-p a {
+  font-weight: 700;
+  color: var(--color-green);
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  text-decoration-thickness: 0.1rem;
+}
+.pasos-right {
+  background-image: url("/assets/bckg-baras.svg");
+  background-size: cover;
+  background-repeat: repeat-y;
+}
+.pasos-right form {
+  display: flex;
+  flex-direction: column;
+}
+.pasos-right label {
+  font-size: var(--ff-300);
+  font-weight: 700;
+  color: var(--color-green);
+  margin-bottom: 0.4rem;
+}
+.pasos-right input {
+  color: var(--color-black);
+  padding: 0.5rem;
   border-radius: 0.2rem;
-  cursor: pointer;
-  text-align: center;
-  transition: scale 0.2s ease-in-out;
+  background-color: var(--color-white);
+  margin-bottom: 1rem;
 }
-.job-offers-card button:hover {
-  scale: 1.05;
+
+@media (min-width: 45rem) {
+  .pasos-container {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 3rem;
+    gap: 6rem;
+  }
 }
+
 /* ***************** */
 /* FOOTER */
 /* ***************** */
