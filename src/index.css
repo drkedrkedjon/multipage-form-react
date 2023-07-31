@@ -363,10 +363,8 @@ header {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
   background-color: var(--color-purple);
   color: var(--color-white);
-  padding: 1rem;
   border-radius: 0.4rem;
 }
 .pasos-left > :not(:last-child) {
@@ -390,6 +388,10 @@ header {
   text-decoration: underline;
   text-underline-offset: 0.3rem;
   text-decoration-thickness: 0.1rem;
+}
+.pasos-left,
+.pasos-right {
+  padding: 7vw 5vw;
 }
 .pasos-right {
   background-image: url("/assets/bckg-baras.svg");
@@ -417,8 +419,6 @@ header {
 @media (min-width: 45rem) {
   .pasos-container {
     grid-template-columns: repeat(2, 1fr);
-    padding: 3rem;
-    gap: 6rem;
   }
 }
 
@@ -432,6 +432,6 @@ footer {
   align-items: center;
   background-color: var(--color-acentado);
   color: var(--color-white);
-  padding-block: 2rem;
+  padding-block: 1rem;
   margin-top: auto;
 }
