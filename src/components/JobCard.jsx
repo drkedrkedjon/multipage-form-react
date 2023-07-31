@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-export default function JobCard({ item }) {
+export default function JobCard({ applyToOffer, item }) {
   return (
     <div className="job-offers-container-query">
       <div className="job-offers-card">
@@ -11,7 +11,12 @@ export default function JobCard({ item }) {
           <span>Salary: </span>
           {item.salary}
         </p>
-        <button aria-label="Apply to this job">Apply to this job</button>
+        <button
+          onClick={() => applyToOffer(item.id)}
+          aria-label="Apply to this job"
+        >
+          Apply to this job
+        </button>
       </div>
     </div>
   );

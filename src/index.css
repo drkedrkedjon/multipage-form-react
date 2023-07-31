@@ -366,6 +366,6 @@ footer {
   align-items: center;
   background-color: var(--color-acentado);
   color: var(--color-white);
-  padding: 1rem;
+  padding-block: 2rem;
   margin-top: auto;
 }
