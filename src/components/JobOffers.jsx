@@ -1,11 +1,12 @@
 import { data } from "../assets/data";
 import { useState } from "react";
-import useToggle from "../utilities/useToggle";
+// import useToggle from "../utilities/useToggle";
 import JobCard from "./JobCard";
-import OpenAccount from "./job-apply-form/OpenAccount";
+import PasoUno from "./job-apply-form/PasoUno";
 
 export default function JobOffers() {
-  const [isApplying, setIsApplying] = useToggle(false);
+  // inicio, paso-uno, paso-dos, paso-tres
+  const [pasos, setPasos] = useState("inicio");
   const [form, setForm] = useState({
     appliedJobs: [],
     email: "",
@@ -17,7 +18,7 @@ export default function JobOffers() {
   }
 
   function handleApplyOffer(offerID) {
-    setIsApplying();
+    setPasos("paso-uno");
     setForm({ ...form, appliedJobs: [...form.appliedJobs, offerID] });
   }
 
@@ -31,12 +32,11 @@ export default function JobOffers() {
 
   return (
     <main className="job-offers">
-      {isApplying ? <h1>Let’s Go!</h1> : <h1>Job Offers</h1>}
+      {pasos === "inicio" ? <h1>Job Offers</h1> : <h1>Let’s Go!</h1>}
       <div className="job-offers-container">
-        {!isApplying ? (
-          jobCardMapeo
-        ) : (
-          <OpenAccount handleForm={handleForm} form={form} />
+        {pasos === "inicio" && jobCardMapeo}
+        {pasos === "paso-uno" && (
+          <PasoUno handleForm={handleForm} form={form} />
         )}
       </div>
     </main>
