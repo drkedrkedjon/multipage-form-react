@@ -3,6 +3,7 @@ import { useState } from "react";
 // import useToggle from "../utilities/useToggle";
 import JobCard from "./JobCard";
 import PasoUno from "./job-apply-form/PasoUno";
+import PasoDos from "./job-apply-form/PasoDos";
 
 export default function JobOffers() {
   // inicio, paso-uno, paso-dos, paso-tres
@@ -37,6 +38,9 @@ export default function JobOffers() {
         {pasos === "inicio" && jobCardMapeo}
         {pasos === "paso-uno" && (
           <PasoUno handleForm={handleForm} form={form} />
+        )}
+        {pasos === "paso-dos" && (
+          <PasoDos handleForm={handleForm} form={form} />
         )}
       </div>
     </main>

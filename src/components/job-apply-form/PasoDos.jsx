@@ -2,9 +2,9 @@
 import AccordionSIngle from "./AccordionSIngle";
 
 const acordeonData = {
-  header: "Why do I need another account?",
+  header: "Can I use false name?",
   content:
-    "We are not going to collect any of your personal data before you make your account. You may ask why?\n\n Well, that will make you be able to delete all your personal data after the selection process is done. Be it successful  or not. We do not share that data with anybody aside of our recruiter. He is the only one able to check.\n\n So, register and lets se if we can work together and at the end there is a big red button in your account that will delete your data if you wish so. Privacy done well.",
+    "Just like a superhero's secret identity keeps them safe, using a false name can be a user's invisible cloak in the online realm. While it may sound mischievous, there are valid reasons behind this digital sleight-of-hand:\n\n Privacy Shield: With cyber threats lurking everywhere, safeguarding personal data is crucial. By adopting an alias during the data submission process, users can shield their real identities from potential threats and data breaches.\n\n Pseudonymous Prowess: Sometimes, users might want to share their opinions or experiences without revealing their true selves. A false name grants them the freedom to express without fear of judgment or backlash.",
 };
 
 export default function OpenAccount({ handleForm, form }) {
