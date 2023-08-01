@@ -422,6 +422,32 @@ header {
   }
 }
 
+/* ACCORDEON */
+.accordeon-h4 {
+  font-size: var(--ff-400);
+  background-color: #554e83;
+  padding: 0.3rem;
+  border-radius: 0.2rem;
+  margin-bottom: 0.5rem;
+}
+.accordeon-h4 button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+.accordeon-border {
+  border-left: 3px solid var(--color-orange);
+  padding-left: 0.5rem;
+}
+.accordeon-trigger[data-state="open"] svg {
+  rotate: 180deg;
+}
+.accordion-content p {
+  font-size: var(--ff-300);
+  margin-top: 0.5rem;
+}
+
 /* ***************** */
 /* FOOTER */
 /* ***************** */
