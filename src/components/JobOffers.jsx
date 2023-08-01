@@ -33,7 +33,11 @@ export default function JobOffers() {
     <main className="job-offers">
       {isApplying ? <h1>Let’s Go!</h1> : <h1>Job Offers</h1>}
       <div className="job-offers-container">
-        {!isApplying ? jobCardMapeo : <OpenAccount />}
+        {!isApplying ? (
+          jobCardMapeo
+        ) : (
+          <OpenAccount handleForm={handleForm} form={form} />
+        )}
       </div>
     </main>
   );
