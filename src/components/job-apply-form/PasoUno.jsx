@@ -12,7 +12,6 @@ const acordeonData = {
 export default function OpenAccount({ handleForm, form, setPasos }) {
   function handleRegisterUser(e) {
     e.preventDefault();
-    // setPasos("paso-dos");
 
     createUserWithEmailAndPassword(auth, form.email, form.password)
       .then((userCredential) => {
