@@ -12,16 +12,16 @@ export default function OpenAccount({ handleForm, form }) {
     <div className="pasos-container">
       <div className="pasos-left">
         <div>
-          <h2>{"Step One: (1/3)"}</h2>
-          <h3>Open an account</h3>
+          <h2>{"Step Two: (2/3)"}</h2>
+          <h3>Your Personal Data</h3>
         </div>
         <AccordionSIngle
           header={acordeonData.header}
           content={acordeonData.content}
         />
-        <p className="pasos-small-p">
+        {/* <p className="pasos-small-p">
           Already have an account? <a href="#">Login Here!</a>
-        </p>
+        </p> */}
       </div>
       <div className="pasos-right">
         <form>

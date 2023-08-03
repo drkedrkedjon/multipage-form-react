@@ -29,7 +29,7 @@ export default function JobOffers() {
     );
   });
 
-  console.log(form);
+  console.log(pasos);
 
   return (
     <main className="job-offers">
@@ -37,10 +37,10 @@ export default function JobOffers() {
       <div className="job-offers-container">
         {pasos === "inicio" && jobCardMapeo}
         {pasos === "paso-uno" && (
-          <PasoUno handleForm={handleForm} form={form} />
+          <PasoUno handleForm={handleForm} form={form} setPasos={setPasos} />
         )}
         {pasos === "paso-dos" && (
-          <PasoDos handleForm={handleForm} form={form} />
+          <PasoDos handleForm={handleForm} form={form} setPasos={setPasos} />
         )}
       </div>
     </main>
