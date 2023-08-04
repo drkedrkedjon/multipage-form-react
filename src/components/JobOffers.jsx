@@ -29,7 +29,7 @@ export default function JobOffers() {
     );
   });
 
-  console.log(form);
+  // console.log(form);
 
   return (
     <main className="job-offers">

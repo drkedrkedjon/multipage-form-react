@@ -2,6 +2,7 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../utilities/firebase";
 import AccordionSIngle from "./AccordionSIngle";
+import { useState } from "react";
 
 const acordeonData = {
   header: "Why do I need another account?",
@@ -10,6 +11,9 @@ const acordeonData = {
 };
 
 export default function OpenAccount({ handleForm, form, setPasos }) {
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [btnActive, setBtnActive] = useState(false);
+
   function handleRegisterUser(e) {
     e.preventDefault();
 
@@ -23,9 +27,16 @@ export default function OpenAccount({ handleForm, form, setPasos }) {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
-        // ..
       });
   }
+
+  if (form.email !== "" && form.password !== "" && !btnActive) {
+    if (form.password === confirmPassword) {
+      setBtnActive(true);
+      console.log("boton activado");
+    }
+  }
+  // MAke sure the password is the same as the confirm password
 
   return (
     <div className="pasos-container">
@@ -65,11 +76,15 @@ export default function OpenAccount({ handleForm, form, setPasos }) {
           <label htmlFor="confirmar-password">Confirm Password</label>
           <input
             // required
+            value={confirmPassword}
             type="password"
             name="password"
             id="confirmar-password"
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
-          <button className="btn-green">Create Account</button>
+          <button disabled={btnActive} className="btn-green">
+            Create Account
+          </button>
         </form>
       </div>
     </div>
