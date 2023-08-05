@@ -7,7 +7,7 @@ import PasoDos from "./job-apply-form/PasoDos";
 
 export default function JobOffers() {
   // inicio, paso-uno, paso-dos, paso-tres
-  const [pasos, setPasos] = useState("inicio");
+  const [pasos, setPasos] = useState("paso-dos");
   const [form, setForm] = useState({
     appliedJobs: [],
     email: "",

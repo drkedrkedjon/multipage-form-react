@@ -12,7 +12,8 @@ const acordeonData = {
 
 export default function OpenAccount({ handleForm, form, setPasos }) {
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [btnActive, setBtnActive] = useState(false);
+  const [btnDisabled, setBtnDisabled] = useState(true);
+  const [userUID, setUserUID] = useState("");
 
   function handleRegisterUser(e) {
     e.preventDefault();
@@ -20,7 +21,7 @@ export default function OpenAccount({ handleForm, form, setPasos }) {
     createUserWithEmailAndPassword(auth, form.email, form.password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
+        setUserUID(user.uid);
         setPasos("paso-dos");
       })
       .catch((error) => {
@@ -30,13 +31,16 @@ export default function OpenAccount({ handleForm, form, setPasos }) {
       });
   }
 
-  if (form.email !== "" && form.password !== "" && !btnActive) {
-    if (form.password === confirmPassword) {
-      setBtnActive(true);
-      console.log("boton activado");
+  if (form.password === confirmPassword && btnDisabled) {
+    if (form.email && form.password && confirmPassword) {
+      setBtnDisabled(false);
     }
   }
-  // MAke sure the password is the same as the confirm password
+
+  if (form.password !== confirmPassword && !btnDisabled) {
+    setBtnDisabled(true);
+  }
+  console.log(userUID);
 
   return (
     <div className="pasos-container">
@@ -55,34 +59,50 @@ export default function OpenAccount({ handleForm, form, setPasos }) {
       </div>
       <div className="pasos-right">
         <form onSubmit={handleRegisterUser}>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">Email:</label>
           <input
-            // required
+            required={true}
             onChange={handleForm}
             value={form.email}
             type="email"
             name="email"
             id="email"
           />
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">
+            Password: <span className="label-span">Min length 8 char.</span>
+          </label>
           <input
-            // required
+            required={true}
             onChange={handleForm}
             value={form.password}
+            minLength={8}
             type="password"
             name="password"
             id="password"
           />
-          <label htmlFor="confirmar-password">Confirm Password</label>
+          <label htmlFor="confirmar-password">
+            Confirm Password:{" "}
+            {confirmPassword && (
+              <span
+                className="label-span"
+                style={{ color: "var(--color-orange)" }}
+              >
+                {form.password !== confirmPassword || !confirmPassword
+                  ? "Passwords do not match"
+                  : "Match"}
+              </span>
+            )}
+          </label>
           <input
-            // required
+            required={true}
             value={confirmPassword}
+            minLength={8}
             type="password"
             name="password"
             id="confirmar-password"
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
-          <button disabled={btnActive} className="btn-green">
+          <button disabled={btnDisabled} className="btn-green">
             Create Account
           </button>
         </form>

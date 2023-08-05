@@ -182,6 +182,10 @@ p {
 .btn-green:hover {
   scale: 1.03;
 }
+.btn-green:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
 /* ******************** */
 /* HEADER */
@@ -407,6 +411,11 @@ header {
   font-weight: 700;
   color: var(--color-green);
   margin-bottom: 0.4rem;
+}
+.label-span {
+  color: var(--color-white);
+  font-size: var(--ff-200);
+  margin-left: 1rem;
 }
 .pasos-right input {
   color: var(--color-black);
