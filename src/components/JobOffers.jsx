@@ -4,11 +4,12 @@ import { useState } from "react";
 import JobCard from "./JobCard";
 import PasoUno from "./job-apply-form/PasoUno";
 import PasoDos from "./job-apply-form/PasoDos";
+import PasoTres from "./job-apply-form/PasoTres";
 
 export default function JobOffers() {
   const [userUID, setUserUID] = useState("");
   // inicio, paso-uno, paso-dos, paso-tres
-  const [pasos, setPasos] = useState("paso-dos");
+  const [pasos, setPasos] = useState("inicio");
   const [form, setForm] = useState({
     appliedJobs: [],
     email: "",
@@ -34,7 +35,7 @@ export default function JobOffers() {
     );
   });
 
-  // console.log(form);
+  console.log(form);
 
   return (
     <main className="job-offers">
@@ -51,6 +52,9 @@ export default function JobOffers() {
         )}
         {pasos === "paso-dos" && (
           <PasoDos handleForm={handleForm} form={form} setPasos={setPasos} />
+        )}
+        {pasos === "paso-tres" && (
+          <PasoTres handleForm={handleForm} form={form} />
         )}
       </div>
     </main>
