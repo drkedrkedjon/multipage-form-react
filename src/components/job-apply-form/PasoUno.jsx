@@ -10,10 +10,15 @@ const acordeonData = {
     "We are not going to collect any of your personal data before you make your account. You may ask why?\n\n Well, that will make you be able to delete all your personal data after the selection process is done. Be it successful  or not. We do not share that data with anybody aside of our recruiter. He is the only one able to check.\n\n So, register and lets se if we can work together and at the end there is a big red button in your account that will delete your data if you wish so. Privacy done well.",
 };
 
-export default function OpenAccount({ handleForm, form, setPasos }) {
+export default function OpenAccount({
+  handleForm,
+  form,
+  setPasos,
+  setUserUID,
+}) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
-  const [userUID, setUserUID] = useState("");
+  const [errorMesasage, setErrorMesasage] = useState("");
 
   function handleRegisterUser(e) {
     e.preventDefault();
@@ -25,9 +30,8 @@ export default function OpenAccount({ handleForm, form, setPasos }) {
         setPasos("paso-dos");
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+        setErrorMesasage(errorMessage);
       });
   }
 
@@ -40,7 +44,6 @@ export default function OpenAccount({ handleForm, form, setPasos }) {
   if (form.password !== confirmPassword && !btnDisabled) {
     setBtnDisabled(true);
   }
-  console.log(userUID);
 
   return (
     <div className="pasos-container">
@@ -105,6 +108,7 @@ export default function OpenAccount({ handleForm, form, setPasos }) {
           <button disabled={btnDisabled} className="btn-green">
             Create Account
           </button>
+          {errorMesasage && <p className="error-msg">{errorMesasage}</p>}
         </form>
       </div>
     </div>

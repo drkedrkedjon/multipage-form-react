@@ -118,6 +118,7 @@ meter {
   --color-purple: #210036;
   --color-shadow: #554e83;
   --color-orange: #ec8e00;
+  --color-red: #ff0000;
 
   /* Typography */
   --font-family: system-ui, sans-serif;
@@ -185,6 +186,13 @@ p {
 .btn-green:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+.error-msg {
+  text-align: center;
+  color: var(--color-red);
+  font-size: var(--ff-300);
+  font-weight: 700;
+  margin-top: 0.5rem;
 }
 
 /* ******************** */
@@ -423,6 +431,36 @@ header {
   border-radius: 0.2rem;
   background-color: var(--color-white);
   margin-bottom: 1rem;
+}
+
+#water-resistant {
+  height: 2rem;
+  width: 2rem;
+  color: var(--color-white);
+  border: 3px solid var(--color-white);
+  border-radius: 4px;
+  display: grid;
+  place-content: center;
+}
+#water-resistant::before {
+  content: "";
+  width: 1.5rem;
+  height: 1.5rem;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1.5rem 1.5rem var(--color-acentado);
+}
+#water-resistant:checked::before {
+  transform: scale(1);
+}
+.water-resistant {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+}
+.water-resistant input,
+label {
+  margin: 0;
 }
 
 @media (min-width: 45rem) {

@@ -6,16 +6,21 @@ import PasoUno from "./job-apply-form/PasoUno";
 import PasoDos from "./job-apply-form/PasoDos";
 
 export default function JobOffers() {
+  const [userUID, setUserUID] = useState("");
   // inicio, paso-uno, paso-dos, paso-tres
   const [pasos, setPasos] = useState("paso-dos");
   const [form, setForm] = useState({
     appliedJobs: [],
     email: "",
     password: "",
+    name: "",
+    phone: "",
+    waterResistant: false,
   });
 
   function handleForm(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value, checked, type } = e.target;
+    setForm({ ...form, [name]: type === "checkbox" ? checked : value });
   }
 
   function handleApplyOffer(offerID) {
@@ -37,7 +42,12 @@ export default function JobOffers() {
       <div className="job-offers-container">
         {pasos === "inicio" && jobCardMapeo}
         {pasos === "paso-uno" && (
-          <PasoUno handleForm={handleForm} form={form} setPasos={setPasos} />
+          <PasoUno
+            handleForm={handleForm}
+            form={form}
+            setPasos={setPasos}
+            setUserUID={setUserUID}
+          />
         )}
         {pasos === "paso-dos" && (
           <PasoDos handleForm={handleForm} form={form} setPasos={setPasos} />
