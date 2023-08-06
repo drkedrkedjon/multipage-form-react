@@ -1,17 +1,48 @@
 /* eslint-disable react/prop-types */
 import AccordionSIngle from "./AccordionSIngle";
+import { useEffect, useState } from "react";
+import { refStorage } from "../../utilities/firebase";
+import { ref as refST, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const acordeonData = {
-  header: "Can I use false name?",
+  header: "What should I put here?",
   content:
-    "Just like a superhero's secret identity keeps them safe, using a false name can be a user's invisible cloak in the online realm. While it may sound mischievous, there are valid reasons behind this digital sleight-of-hand:\n\n Privacy Shield: With cyber threats lurking everywhere, safeguarding personal data is crucial. By adopting an alias during the data submission process, users can shield their real identities from potential threats and data breaches.\n\n YES, YOU CAN USE A FALSE NAME.",
+    "All we need is some data relevante to the job you are applying to, no need to write everything you know. Like code lover rock star and so on.\n\n The rest, we guess, is already writen in your CV and we will contact you if we need more information.\n\n Please, make sure you have your CV in .pdf format ready to upload.",
 };
 
-export default function PasoTres({ handleForm, form, setPasos }) {
+export default function PasoTres({
+  handleForm,
+  form,
+  setPasos,
+  userUID,
+  setForm,
+}) {
+  const [cvSelected, setCvSelected] = useState(null);
+
   function handleSubmit(e) {
     e.preventDefault();
     setPasos("paso-tres");
   }
+  function handleCvSelected(e) {
+    setCvSelected(e.target.files[0]);
+  }
+
+  useEffect(() => {
+    if (!cvSelected) return;
+
+    const userFilesRef = refST(refStorage, `/${userUID}`);
+    const fileRef = refST(userFilesRef, cvSelected?.name);
+
+    uploadBytes(fileRef, cvSelected).then(() => {
+      getDownloadURL(fileRef).then((url) => {
+        setForm((oldData) => ({
+          ...oldData,
+          fileURL: url,
+          fileName: cvSelected?.name,
+        }));
+      });
+    });
+  }, [cvSelected]);
 
   return (
     <div className="pasos-container">
@@ -27,35 +58,33 @@ export default function PasoTres({ handleForm, form, setPasos }) {
       </div>
       <div className="pasos-right">
         <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Your Name:</label>
-          <input
-            required
+          <label htmlFor="techStack">Your Tech Stack:</label>
+          <textarea
             onChange={handleForm}
-            value={form.name}
-            type="text"
-            name="name"
-            id="name"
+            value={form.techStack}
+            name="techStack"
+            id="techStack"
           />
-          <label htmlFor="phone">Phone Number:</label>
+          <label htmlFor="experience">Years of experience:</label>
           <input
             required
             onChange={handleForm}
-            value={form.phone}
+            value={form.experience}
             type="number"
-            name="phone"
-            id="phone"
+            name="experience"
+            id="experience"
           />
-          <div className="water-resistant">
-            <label htmlFor="water-resistant">🌧️ Are You Water Resistant?</label>
-            <input
-              required
-              type="checkbox"
-              name="waterResistant"
-              id="water-resistant"
-              checked={form.waterResistant}
-              onChange={handleForm}
-            />
-          </div>
+
+          <label htmlFor="cv">Upload your CV in .pdf format</label>
+          <input
+            required
+            type="file"
+            name="cvRef"
+            id="cv"
+            accept="application/pdf"
+            onChange={handleCvSelected}
+          />
+
           <button className="btn-green">FInish Job Application</button>
         </form>
       </div>

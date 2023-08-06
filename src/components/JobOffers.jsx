@@ -17,6 +17,11 @@ export default function JobOffers() {
     name: "",
     phone: "",
     waterResistant: false,
+    experience: "",
+    techStack: "",
+    cvRef: "",
+    fileURL: "",
+    fileName: "",
   });
 
   function handleForm(e) {
@@ -54,7 +59,12 @@ export default function JobOffers() {
           <PasoDos handleForm={handleForm} form={form} setPasos={setPasos} />
         )}
         {pasos === "paso-tres" && (
-          <PasoTres handleForm={handleForm} form={form} />
+          <PasoTres
+            handleForm={handleForm}
+            form={form}
+            userUID={userUID}
+            setForm={setForm}
+          />
         )}
       </div>
     </main>

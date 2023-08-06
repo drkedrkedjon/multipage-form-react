@@ -425,12 +425,17 @@ header {
   font-size: var(--ff-200);
   margin-left: 1rem;
 }
-.pasos-right input {
+.pasos-right input,
+textarea {
   color: var(--color-black);
   padding: 0.5rem;
   border-radius: 0.2rem;
   background-color: var(--color-white);
   margin-bottom: 1rem;
+  width: 100%;
+}
+textarea {
+  height: 6rem;
 }
 
 #water-resistant {
