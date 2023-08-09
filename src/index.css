@@ -500,6 +500,17 @@ label {
   margin-top: 0.5rem;
 }
 
+/* paso cuatro */
+.user-data-title {
+  color: var(--color-green);
+}
+.user-data-value {
+  color: var(--color-white);
+  font-weight: 700;
+  font-size: var(--ff-600);
+  margin-bottom: 1rem;
+}
+
 /* ***************** */
 /* FOOTER */
 /* ***************** */

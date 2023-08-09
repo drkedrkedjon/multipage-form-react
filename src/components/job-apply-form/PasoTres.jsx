@@ -11,14 +11,20 @@ const acordeonData = {
     "All we need is some data relevante to the job you are applying to, no need to write everything you know. Like code lover rock star and so on.\n\n The rest, we guess, is already writen in your CV and we will contact you if we need more information.\n\n Please, make sure you have your CV in .pdf format ready to upload.",
 };
 
-export default function PasoTres({ handleForm, form, userUID, setForm }) {
+export default function PasoTres({
+  handleForm,
+  form,
+  userUID,
+  setForm,
+  setPasos,
+}) {
   const [cvSelected, setCvSelected] = useState(null);
   const [btnDisabled, setBtnDisabled] = useState(true);
 
   function handleSubmit(e) {
     e.preventDefault();
     const userRef = refDB(db, `/${userUID}`);
-    push(userRef, form);
+    push(userRef, form).then(setPasos("paso-cuatro"));
   }
 
   function handleCvSelected(e) {
