@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import AccordionSIngle from "./AccordionSIngle";
 import { useEffect, useState } from "react";
-import { refStorage } from "../../utilities/firebase";
+import { db, refStorage } from "../../utilities/firebase";
 import { ref as refST, uploadBytes, getDownloadURL } from "firebase/storage";
+import { push, ref as refDB } from "firebase/database";
 
 const acordeonData = {
   header: "What should I put here?",
@@ -10,19 +11,16 @@ const acordeonData = {
     "All we need is some data relevante to the job you are applying to, no need to write everything you know. Like code lover rock star and so on.\n\n The rest, we guess, is already writen in your CV and we will contact you if we need more information.\n\n Please, make sure you have your CV in .pdf format ready to upload.",
 };
 
-export default function PasoTres({
-  handleForm,
-  form,
-  setPasos,
-  userUID,
-  setForm,
-}) {
+export default function PasoTres({ handleForm, form, userUID, setForm }) {
   const [cvSelected, setCvSelected] = useState(null);
+  const [btnDisabled, setBtnDisabled] = useState(true);
 
   function handleSubmit(e) {
     e.preventDefault();
-    setPasos("paso-tres");
+    const userRef = refDB(db, `/${userUID}`);
+    push(userRef, form);
   }
+
   function handleCvSelected(e) {
     setCvSelected(e.target.files[0]);
   }
@@ -40,9 +38,10 @@ export default function PasoTres({
           fileURL: url,
           fileName: cvSelected?.name,
         }));
+        setBtnDisabled(false);
       });
     });
-  }, [cvSelected]);
+  }, [cvSelected, setForm, userUID]);
 
   return (
     <div className="pasos-container">
@@ -79,13 +78,15 @@ export default function PasoTres({
           <input
             required
             type="file"
-            name="cvRef"
             id="cv"
+            name="cv"
             accept="application/pdf"
             onChange={handleCvSelected}
           />
 
-          <button className="btn-green">FInish Job Application</button>
+          <button disabled={btnDisabled} className="btn-green">
+            FInish Job Application
+          </button>
         </form>
       </div>
     </div>

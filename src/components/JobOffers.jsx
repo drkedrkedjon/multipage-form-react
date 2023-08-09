@@ -9,7 +9,7 @@ import PasoTres from "./job-apply-form/PasoTres";
 export default function JobOffers() {
   const [userUID, setUserUID] = useState("");
   // inicio, paso-uno, paso-dos, paso-tres
-  const [pasos, setPasos] = useState("inicio");
+  const [pasos, setPasos] = useState("paso-tres");
   const [form, setForm] = useState({
     appliedJobs: [],
     email: "",
@@ -19,7 +19,6 @@ export default function JobOffers() {
     waterResistant: false,
     experience: "",
     techStack: "",
-    cvRef: "",
     fileURL: "",
     fileName: "",
   });
