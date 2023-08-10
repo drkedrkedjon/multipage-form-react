@@ -1,11 +1,62 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { onValue, ref as refDB } from "firebase/database";
+import { onValue, ref as refDB, remove } from "firebase/database";
 import { db } from "../../utilities/firebase";
+import { auth } from "../../utilities/firebase";
+import { signOut, deleteUser } from "firebase/auth";
+import { ref as refST, deleteObject } from "firebase/storage";
+import { storage } from "../../utilities/firebase";
 
-export default function PasoCuatro({ setPasos, userUID }) {
+export default function PasoCuatro({
+  setPasos,
+  userUID,
+  setUserUID,
+  form,
+  setForm,
+}) {
   const [userData, setUserData] = useState({});
+  const [errorMsg, setErrorMsg] = useState("");
+
+  function handleLogout() {
+    signOut(auth)
+      .then(() => {
+        setPasos("inicio");
+        setUserUID("");
+      })
+      .catch((error) => {
+        setErrorMsg(error.message);
+      });
+  }
+
+  function handleDelete() {
+    remove(refDB(db, `/${userUID}`))
+      .then(() => {
+        const userRef = refST(storage, `${userUID}`);
+        const cvRef = refST(userRef, form.fileName);
+        deleteObject(cvRef).then(() => {
+          deleteUser(auth.currentUser).then(() => {
+            setPasos("inicio");
+            setUserUID("");
+            setForm({
+              appliedJobs: [],
+              email: "",
+              password: "",
+              name: "",
+              phone: "",
+              waterResistant: false,
+              experience: "",
+              techStack: "",
+              fileURL: "",
+              fileName: "",
+            });
+          });
+        });
+      })
+      .catch((error) => {
+        setErrorMsg(error.message);
+      });
+  }
 
   useEffect(() => {
     const cancelOnValue = onValue(
@@ -37,6 +88,10 @@ export default function PasoCuatro({ setPasos, userUID }) {
         <p>
           While you're waiting, you can peep your application status down below.
         </p>
+        <button onClick={handleLogout} className="btn-green">
+          Log Out
+        </button>
+        {errorMsg && <p className="error-msg">{errorMsg}</p>}
       </div>
       <div className="pasos-right">
         <p className="user-data-title">Applied jobs:</p>
@@ -59,8 +114,9 @@ export default function PasoCuatro({ setPasos, userUID }) {
         <p className="user-data-value">
           {userData?.waterResistant ? "Yes" : "No"}
         </p>
-        <button className="btn-green">Log Out</button>
-        <button className="btn-green">Delete EVERYTHING</button>
+        <button onClick={handleDelete} className="btn-green btn-red">
+          Delete ALL data and close account
+        </button>
       </div>
     </div>
   );

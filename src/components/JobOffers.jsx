@@ -66,7 +66,13 @@ export default function JobOffers() {
           />
         )}
         {pasos === "paso-cuatro" && (
-          <PasoCuatro setPasos={setPasos} userUID={userUID} />
+          <PasoCuatro
+            setPasos={setPasos}
+            userUID={userUID}
+            setUserUID={setUserUID}
+            form={form}
+            setForm={setForm}
+          />
         )}
       </div>
     </main>
