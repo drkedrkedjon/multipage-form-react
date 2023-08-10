@@ -23,6 +23,18 @@ export default function PasoCuatro({
       .then(() => {
         setPasos("inicio");
         setUserUID("");
+        setForm({
+          appliedJobs: [],
+          email: "",
+          password: "",
+          name: "",
+          phone: "",
+          waterResistant: false,
+          experience: "",
+          techStack: "",
+          fileURL: "",
+          fileName: "",
+        });
       })
       .catch((error) => {
         setErrorMsg(error.message);
@@ -33,7 +45,7 @@ export default function PasoCuatro({
     remove(refDB(db, `/${userUID}`))
       .then(() => {
         const userRef = refST(storage, `${userUID}`);
-        const cvRef = refST(userRef, form.fileName);
+        const cvRef = refST(userRef, userData.fileName); // Aqui esta error
         deleteObject(cvRef).then(() => {
           deleteUser(auth.currentUser).then(() => {
             setPasos("inicio");

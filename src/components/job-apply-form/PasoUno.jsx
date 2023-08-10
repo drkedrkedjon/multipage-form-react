@@ -57,7 +57,10 @@ export default function OpenAccount({
           content={acordeonData.content}
         />
         <p className="pasos-small-p">
-          Already have an account? <a href="#">Login Here!</a>
+          Already have an account?{" "}
+          <button className="btn-link" onClick={() => setPasos("login")}>
+            Login Here!
+          </button>
         </p>
       </div>
       <div className="pasos-right">
