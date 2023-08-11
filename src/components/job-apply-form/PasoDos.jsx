@@ -17,7 +17,7 @@ export default function PasoDos({ handleForm, form, setPasos }) {
     <div className="pasos-container">
       <div className="pasos-left">
         <div>
-          <h2>{"Step Two: (2/3)"}</h2>
+          <h2>{"Step Two: (2/4)"}</h2>
           <h3>Your Personal Data</h3>
         </div>
         <AccordionSIngle

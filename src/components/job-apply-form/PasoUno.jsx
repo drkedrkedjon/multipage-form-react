@@ -49,7 +49,7 @@ export default function OpenAccount({
     <div className="pasos-container">
       <div className="pasos-left">
         <div>
-          <h2>{"Step One: (1/3)"}</h2>
+          <h2>{"Step One: (1/4)"}</h2>
           <h3>Open an account</h3>
         </div>
         <AccordionSIngle

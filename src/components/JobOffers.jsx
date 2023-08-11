@@ -7,10 +7,11 @@ import PasoDos from "./job-apply-form/PasoDos";
 import PasoTres from "./job-apply-form/PasoTres";
 import PasoCuatro from "./job-apply-form/PasoCuatro";
 import Login from "./job-apply-form/Login";
+import ConfirmJobOffer from "./job-apply-form/ConfirmJobOffer";
 
 export default function JobOffers() {
   const [userUID, setUserUID] = useState("");
-  // inicio, login, paso-uno, paso-dos, paso-tres, paso-cuatro
+  // inicio, login, paso-uno, paso-dos, paso-tres, paso-cuatro, confirm-offer
   const [pasos, setPasos] = useState("inicio");
   const [form, setForm] = useState({
     appliedJobs: [],
@@ -71,12 +72,14 @@ export default function JobOffers() {
             setPasos={setPasos}
             userUID={userUID}
             setUserUID={setUserUID}
-            form={form}
             setForm={setForm}
           />
         )}
         {pasos === "login" && (
           <Login setPasos={setPasos} setUserUID={setUserUID} />
+        )}
+        {pasos === "confirm-offer" && (
+          <ConfirmJobOffer setPasos={setPasos} userUID={userUID} form={form} />
         )}
       </div>
     </main>

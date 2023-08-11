@@ -53,7 +53,7 @@ export default function PasoTres({
     <div className="pasos-container">
       <div className="pasos-left">
         <div>
-          <h2>{"Last Step: (3/3)"}</h2>
+          <h2>{"Last Step: (3/4)"}</h2>
           <h3>Your Work Experience Data</h3>
         </div>
         <AccordionSIngle

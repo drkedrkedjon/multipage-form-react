@@ -25,18 +25,26 @@ export default function Header() {
             <Drawer handleCloseMenu={setIsMenuOpen}>
               <ul className="nav-list">
                 <li>
-                  <a href="">My portafolio</a>
+                  <a href="https://bubulazy.com">My portafolio</a>
                 </li>
                 <li>
-                  <a href="">LinkedIn</a>
+                  <a href="https://github.com/drkedrkedjon">GitHub</a>
                 </li>
                 <li>
-                  <a href="">Contact form</a>
+                  <a href="https://www.linkedin.com/in/sasa-savic-perusina/">
+                    LinkedIn
+                  </a>
                 </li>
                 <li>
-                  <p>
-                    jkhg sghjsd sdfgh sdfhg sdfgshdfg sdfhg sdfgskldjfg sdjhfg
-                    sdflgjhsdf sdkfhg sdfg sd
+                  <a href="https://bubulazy.com/#form">Contact form</a>
+                </li>
+                <li>
+                  <p className="about-app">
+                    This application serves as an exercise project aimed at
+                    constructing a multi-page form with Firebase authentication,
+                    storage, and database integration as the backend
+                    infrastructure. Essentially, it simulates the process of
+                    applying for a job opportunity.
                   </p>
                 </li>
               </ul>

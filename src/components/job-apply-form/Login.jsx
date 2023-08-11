@@ -18,7 +18,7 @@ export default function Login({ setPasos, setUserUID }) {
         // Signed in
         const user = userCredential.user;
         setUserUID(user.uid);
-        setPasos("paso-cuatro");
+        setPasos("confirm-offer");
         // ...
       })
       .catch((error) => {
@@ -49,7 +49,7 @@ export default function Login({ setPasos, setUserUID }) {
     <div className="pasos-container">
       <div className="pasos-left">
         <div>
-          <h2>{"Step One:"}</h2>
+          <h2>{"Step Dos: (2/4)"}</h2>
           <h3>Login to your existing account</h3>
         </div>
 

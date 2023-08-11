@@ -8,13 +8,7 @@ import { signOut, deleteUser } from "firebase/auth";
 import { ref as refST, deleteObject } from "firebase/storage";
 import { storage } from "../../utilities/firebase";
 
-export default function PasoCuatro({
-  setPasos,
-  userUID,
-  setUserUID,
-  form,
-  setForm,
-}) {
+export default function PasoCuatro({ setPasos, userUID, setUserUID, setForm }) {
   const [userData, setUserData] = useState({});
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -78,6 +72,18 @@ export default function PasoCuatro({
           const allData = Object.entries(snapshot.val());
           const data = allData[0][1];
           setUserData(data);
+          setForm({
+            appliedJobs: [],
+            email: "",
+            password: "",
+            name: "",
+            phone: "",
+            waterResistant: false,
+            experience: "",
+            techStack: "",
+            fileURL: "",
+            fileName: "",
+          });
         } else {
           setUserData({});
         }
@@ -89,7 +95,7 @@ export default function PasoCuatro({
   return (
     <div className="pasos-container">
       <div className="pasos-left">
-        <h2>Your Job Application:</h2>
+        <h2>{"Your Job Application: (4/4)"}</h2>
         <h3>
           Yo, you've applied for the job like a boss. Good luck moving forward!
         </h3>
@@ -118,8 +124,6 @@ export default function PasoCuatro({
         <p className="user-data-value">{userData?.experience}</p>
         <p className="user-data-title">CV:</p>
         <p className="user-data-value">{userData?.fileName}</p>
-        <p className="user-data-title">Password:</p>
-        <p className="user-data-value">{userData?.password}</p>
         <p className="user-data-title">Tech stack:</p>
         <p className="user-data-value">{userData?.techStack}</p>
         <p className="user-data-title">Water resistance:</p>
