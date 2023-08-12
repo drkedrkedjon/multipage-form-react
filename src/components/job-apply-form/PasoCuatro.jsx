@@ -17,18 +17,6 @@ export default function PasoCuatro({ setPasos, userUID, setUserUID, setForm }) {
       .then(() => {
         setPasos("inicio");
         setUserUID("");
-        setForm({
-          appliedJobs: [],
-          email: "",
-          password: "",
-          name: "",
-          phone: "",
-          waterResistant: false,
-          experience: "",
-          techStack: "",
-          fileURL: "",
-          fileName: "",
-        });
       })
       .catch((error) => {
         setErrorMsg(error.message);
@@ -44,18 +32,6 @@ export default function PasoCuatro({ setPasos, userUID, setUserUID, setForm }) {
           deleteUser(auth.currentUser).then(() => {
             setPasos("inicio");
             setUserUID("");
-            setForm({
-              appliedJobs: [],
-              email: "",
-              password: "",
-              name: "",
-              phone: "",
-              waterResistant: false,
-              experience: "",
-              techStack: "",
-              fileURL: "",
-              fileName: "",
-            });
           });
         });
       })
@@ -92,6 +68,16 @@ export default function PasoCuatro({ setPasos, userUID, setUserUID, setForm }) {
     return cancelOnValue;
   }, [userUID]);
 
+  // console.log(userData.appliedJobs);
+
+  const appliedJobsMapeo = userData?.appliedJobs?.map((item) => {
+    return (
+      <button className="btn-applied-jobs" key={Math.random()}>
+        {item}
+      </button>
+    );
+  });
+
   return (
     <div className="pasos-container">
       <div className="pasos-left">
@@ -113,7 +99,8 @@ export default function PasoCuatro({ setPasos, userUID, setUserUID, setForm }) {
       </div>
       <div className="pasos-right">
         <p className="user-data-title">Applied jobs:</p>
-        <p className="user-data-value">{userData?.appliedJobs}</p>
+        {/* <p className="user-data-value">{userData?.appliedJobs}</p> */}
+        {appliedJobsMapeo}
         <p className="user-data-title">Name:</p>
         <p className="user-data-value">{userData?.name}</p>
         <p className="user-data-title">E-mail:</p>

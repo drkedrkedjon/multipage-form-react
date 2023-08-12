@@ -16,7 +16,6 @@ export default function JobOffers() {
   const [form, setForm] = useState({
     appliedJobs: [],
     email: "",
-    password: "",
     name: "",
     phone: "",
     waterResistant: false,

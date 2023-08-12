@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { onValue, ref as refDB, update } from "firebase/database";
+import { onValue, ref as refDB, set, update } from "firebase/database";
 import { db } from "../../utilities/firebase";
 import { data } from "../../assets/data.jsx";
 
@@ -9,6 +9,9 @@ export default function ConfirmJobOffer({ setPasos, form, userUID }) {
   const [userData, setUserData] = useState({});
   const [dataID, setDataID] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+  const [offertaDuplicada, setOffertaDuplicada] = useState(false);
+
+  //  Aplicar logica de que si el usuario ya aplico a esa oferta, no lo deje aplicar de nuevo
 
   function handleApply() {
     const newAppliedJobs = [...userData.appliedJobs, ...form.appliedJobs];
@@ -34,6 +37,13 @@ export default function ConfirmJobOffer({ setPasos, form, userUID }) {
           const allData = Object.entries(snapshot.val());
           const data = allData[0][1];
           const dataID = allData[0][0];
+
+          const duplicado = data.appliedJobs.some((item) => {
+            return item === form.appliedJobs[0];
+          });
+
+          setOffertaDuplicada(duplicado);
+
           setDataID(dataID);
           setUserData(data);
         } else {
@@ -49,8 +59,7 @@ export default function ConfirmJobOffer({ setPasos, form, userUID }) {
       <div className="pasos-left">
         <h2>{"Step Three: (3/4)"}</h2>
         <h3>
-          So, are you 100% sure you want to apply for this job? If so, good luck
-          moving forward!
+          You want to apply for this job? If so, good luck moving forward!
         </h3>
         <p>Our recruiter, Pendejo Gonzales, will be alerted.</p>
         <p>Hit the button below!</p>
