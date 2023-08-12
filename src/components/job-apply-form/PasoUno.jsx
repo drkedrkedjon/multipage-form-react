@@ -16,6 +16,7 @@ export default function OpenAccount({
   setPasos,
   setUserUID,
 }) {
+  const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [errorMesasage, setErrorMesasage] = useState("");
@@ -23,7 +24,7 @@ export default function OpenAccount({
   function handleRegisterUser(e) {
     e.preventDefault();
 
-    createUserWithEmailAndPassword(auth, form.email, form.password)
+    createUserWithEmailAndPassword(auth, form.email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         setUserUID(user.uid);
@@ -35,13 +36,13 @@ export default function OpenAccount({
       });
   }
 
-  if (form.password === confirmPassword && btnDisabled) {
-    if (form.email && form.password && confirmPassword) {
+  if (password === confirmPassword && btnDisabled) {
+    if (form.email && password && confirmPassword) {
       setBtnDisabled(false);
     }
   }
 
-  if (form.password !== confirmPassword && !btnDisabled) {
+  if (password !== confirmPassword && !btnDisabled) {
     setBtnDisabled(true);
   }
 
@@ -79,8 +80,8 @@ export default function OpenAccount({
           </label>
           <input
             required={true}
-            onChange={handleForm}
-            value={form.password}
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
             minLength={8}
             type="password"
             name="password"
@@ -93,7 +94,7 @@ export default function OpenAccount({
                 className="label-span"
                 style={{ color: "var(--color-orange)" }}
               >
-                {form.password !== confirmPassword || !confirmPassword
+                {password !== confirmPassword || !confirmPassword
                   ? "Passwords do not match"
                   : "Match"}
               </span>

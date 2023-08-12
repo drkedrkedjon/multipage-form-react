@@ -1,5 +1,5 @@
 import { data } from "../assets/data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import useToggle from "../utilities/useToggle";
 import JobCard from "./JobCard";
 import PasoUno from "./job-apply-form/PasoUno";
@@ -41,6 +41,14 @@ export default function JobOffers() {
       <JobCard applyToOffer={handleApplyOffer} item={item} key={item.id} />
     );
   });
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, [pasos]);
 
   return (
     <main className="job-offers">

@@ -331,10 +331,10 @@ header {
   align-self: center;
   width: 90vw;
   max-width: 87rem;
-  margin: 3rem 3vw 1rem;
+  margin: 1rem 3vw 1rem;
 }
 .job-offers h1 {
-  font-size: var(--ff-900);
+  font-size: var(--ff-800);
   color: var(--color-orange);
   font-weight: 900;
   text-align: right;
@@ -385,6 +385,14 @@ header {
 }
 .job-offers-card span {
   color: var(--color-green);
+}
+@media (min-width: 45rem) {
+  .job-offers h1 {
+    font-size: var(--ff-900);
+  }
+  .job-offers {
+    margin: 3rem 3vw 1rem;
+  }
 }
 /* ***************** */
 /* PASOS */
