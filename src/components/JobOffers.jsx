@@ -1,5 +1,7 @@
 import { data } from "../assets/data";
 import { useEffect, useState } from "react";
+import { auth } from "../utilities/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 // import useToggle from "../utilities/useToggle";
 import JobCard from "./JobCard";
 import PasoUno from "./job-apply-form/PasoUno";
@@ -11,6 +13,7 @@ import ConfirmJobOffer from "./job-apply-form/ConfirmJobOffer";
 
 export default function JobOffers() {
   const [userUID, setUserUID] = useState("");
+  const [isLogged, setIsLogged] = useState(false);
   // inicio, login, paso-uno, paso-dos, paso-tres, paso-cuatro, confirm-offer
   const [pasos, setPasos] = useState("inicio");
   const [form, setForm] = useState({
@@ -30,9 +33,11 @@ export default function JobOffers() {
     setForm({ ...form, [name]: type === "checkbox" ? checked : value });
   }
 
+  const redirectIfLogged = isLogged ? "confirm-offer" : "paso-uno";
+
   function handleApplyOffer(offerID) {
-    setPasos("paso-uno");
     setForm({ ...form, appliedJobs: [...form.appliedJobs, offerID] });
+    setPasos(redirectIfLogged);
   }
 
   const jobCardMapeo = data.map((item) => {
@@ -49,8 +54,20 @@ export default function JobOffers() {
     });
   }, [pasos]);
 
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsLogged(true);
+        setUserUID(user.uid);
+      } else {
+        setIsLogged(false);
+      }
+    });
+  }, []);
+
   return (
     <main className="job-offers">
+      {/* Falta eso de H1 */}
       {pasos === "inicio" ? <h1>Job Offers</h1> : <h1>Let’s Go!</h1>}
       <div className="job-offers-container">
         {pasos === "inicio" && jobCardMapeo}
