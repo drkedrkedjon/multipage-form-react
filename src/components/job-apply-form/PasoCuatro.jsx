@@ -92,14 +92,17 @@ export default function PasoCuatro({ setPasos, userUID, setUserUID, setForm }) {
         <p>
           While you're waiting, you can peep your application status down below.
         </p>
-        <button onClick={handleLogout} className="btn-green">
+        <a className="link-orange" onClick={() => setPasos("inicio")}>
+          Return to all job offers
+        </a>{" "}
+        <br />
+        <button onClick={handleLogout} className="btn-green btn-orange">
           Log Out
         </button>
         {errorMsg && <p className="error-msg">{errorMsg}</p>}
       </div>
       <div className="pasos-right">
         <p className="user-data-title">Applied jobs:</p>
-        {/* <p className="user-data-value">{userData?.appliedJobs}</p> */}
         {appliedJobsMapeo}
         <p className="user-data-title">Name:</p>
         <p className="user-data-value">{userData?.name}</p>

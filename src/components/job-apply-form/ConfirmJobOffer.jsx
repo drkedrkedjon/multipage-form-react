@@ -69,8 +69,13 @@ export default function ConfirmJobOffer({ setPasos, form, userUID }) {
               take your pick. It's decision time, my friend! 🚀
             </p>
             <div className="pasos-left-offertas-duplicado">
-              <a onClick={() => setPasos("inicio")}>Return to job offers</a>
-              <a onClick={() => setPasos("paso-cuatro")}>
+              <a className="link-orange" onClick={() => setPasos("inicio")}>
+                Return to job offers
+              </a>
+              <a
+                className="link-orange"
+                onClick={() => setPasos("paso-cuatro")}
+              >
                 Continue to your account
               </a>
             </div>

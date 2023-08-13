@@ -191,6 +191,10 @@ p {
   background-color: var(--color-red);
   color: var(--color-white);
 }
+.btn-orange {
+  background-color: var(--color-orange);
+  color: var(--color-black);
+}
 .btn-link {
   font-weight: 700;
   color: var(--color-green);
@@ -438,12 +442,13 @@ header {
   gap: 1rem;
   margin-top: 3rem;
 }
-.pasos-left-offertas-duplicado a {
+.link-orange {
   text-decoration: underline;
   text-underline-offset: 0.3rem;
   text-decoration-color: var(--color-orange);
   text-decoration-thickness: 0.1rem;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .pasos-right {
