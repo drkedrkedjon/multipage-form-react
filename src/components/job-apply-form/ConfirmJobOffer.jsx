@@ -11,8 +11,6 @@ export default function ConfirmJobOffer({ setPasos, form, userUID }) {
   const [errorMsg, setErrorMsg] = useState("");
   const [offertaDuplicada, setOffertaDuplicada] = useState(false);
 
-  //  Aplicar logica de que si el usuario ya aplico a esa oferta, no lo deje aplicar de nuevo
-
   function handleApply() {
     const newAppliedJobs = [...userData.appliedJobs, ...form.appliedJobs];
     const newData = { ...userData, appliedJobs: newAppliedJobs };
@@ -37,13 +35,10 @@ export default function ConfirmJobOffer({ setPasos, form, userUID }) {
           const allData = Object.entries(snapshot.val());
           const data = allData[0][1];
           const dataID = allData[0][0];
-
           const duplicado = data.appliedJobs.some((item) => {
             return item === form.appliedJobs[0];
           });
-
           setOffertaDuplicada(duplicado);
-
           setDataID(dataID);
           setUserData(data);
         } else {
@@ -58,14 +53,42 @@ export default function ConfirmJobOffer({ setPasos, form, userUID }) {
     <div className="pasos-container">
       <div className="pasos-left">
         <h2>{"Step Three: (3/4)"}</h2>
-        <h3>
-          You want to apply for this job? If so, good luck moving forward!
-        </h3>
-        <p>Our recruiter, Pendejo Gonzales, will be alerted.</p>
-        <p>Hit the button below!</p>
-        <button onClick={handleApply} className="btn-green">
-          Apply to this job
-        </button>
+        {/* Offerta duplicada */}
+        {offertaDuplicada && (
+          <>
+            <h3>
+              Well, well, well! Look who's been there, done that - yep, you've
+              gone ahead and applied for the job already! Bravo, speedy.
+            </h3>
+            <p>
+              But hang on a sec, we're not into making clones of folks just yet,
+              so we can't double up on you. Nope, not happening.
+            </p>
+            <p>
+              Now comes the fun part - take a gander at the options below and
+              take your pick. It's decision time, my friend! 🚀
+            </p>
+            <div className="pasos-left-offertas-duplicado">
+              <a onClick={() => setPasos("inicio")}>Return to job offers</a>
+              <a onClick={() => setPasos("paso-cuatro")}>
+                Continue to your account
+              </a>
+            </div>
+          </>
+        )}
+        {/* Offerta NO duplicada */}
+        {!offertaDuplicada && (
+          <>
+            <h3>
+              You want to apply for this job? If so, good luck moving forward!
+            </h3>
+            <p>Our recruiter, Pendejo Gonzales, will be alerted.</p>
+            <p>Hit the button below!</p>
+            <button onClick={handleApply} className="btn-green">
+              Apply to this job
+            </button>
+          </>
+        )}
         {errorMsg && <p className="error-msg">{errorMsg}</p>}
       </div>
       <div className="pasos-right">
