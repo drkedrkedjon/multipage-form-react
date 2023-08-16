@@ -576,6 +576,64 @@ label {
   scale: 1.03;
 }
 
+/* ******************** */
+/* JOBMODAL EN PASO 4 */
+/* ******************** */
+
+.job-modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  inset: 0;
+  padding: 16px;
+  z-index: 900;
+}
+.job-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: hsl(280deg 100% 30% / 0.75);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  animation: fadeIn 850ms cubic-bezier(0.14, 0.78, 0.36, 1);
+}
+.job-modal-content {
+  transform: translate(-50%, -50%);
+  position: absolute;
+  background: var(--color-white);
+  color: var(--color-black);
+  width: min(90vw, 40rem);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.job-modal-close-btn {
+  align-self: center;
+  background-color: var(--color-acentado);
+  padding: 0.5rem 1.5rem;
+  color: var(--color-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
+.job-modal-content h2 {
+  font-size: var(--ff-500);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.job-modal-content p {
+  font-size: var(--ff-300);
+  margin-bottom: 1rem;
+}
+.job-modal-content p > span {
+  font-weight: 700;
+}
+
 /* ***************** */
 /* FOOTER */
 /* ***************** */

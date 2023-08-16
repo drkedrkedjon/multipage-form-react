@@ -1,16 +1,19 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { onValue, ref as refDB, remove } from "firebase/database";
+import { onValue, ref as refDB, remove, set } from "firebase/database";
 import { db } from "../../utilities/firebase";
 import { auth } from "../../utilities/firebase";
 import { signOut, deleteUser } from "firebase/auth";
 import { ref as refST, deleteObject } from "firebase/storage";
 import { storage } from "../../utilities/firebase";
+import { data } from "../../assets/data";
+import JobModal from "./JobModal";
 
 export default function PasoCuatro({ setPasos, userUID, setUserUID, setForm }) {
   const [userData, setUserData] = useState({});
   const [errorMsg, setErrorMsg] = useState("");
+  const [jobModal, setJobModal] = useState(null);
 
   function handleLogout() {
     signOut(auth)
@@ -40,6 +43,23 @@ export default function PasoCuatro({ setPasos, userUID, setUserUID, setForm }) {
       });
   }
 
+  function handleJobModal(id) {
+    const job = data.find((item) => item.id === id);
+    setJobModal(job);
+  }
+
+  const appliedJobsMapeo = userData?.appliedJobs?.map((item) => {
+    return (
+      <button
+        onClick={() => handleJobModal(item)}
+        className="btn-applied-jobs"
+        key={Math.random()}
+      >
+        {item}
+      </button>
+    );
+  });
+
   useEffect(() => {
     const cancelOnValue = onValue(
       refDB(db, `/${userUID}`),
@@ -68,18 +88,21 @@ export default function PasoCuatro({ setPasos, userUID, setUserUID, setForm }) {
     return cancelOnValue;
   }, [userUID]);
 
-  // console.log(userData.appliedJobs);
-
-  const appliedJobsMapeo = userData?.appliedJobs?.map((item) => {
-    return (
-      <button className="btn-applied-jobs" key={Math.random()}>
-        {item}
-      </button>
-    );
-  });
-
   return (
     <div className="pasos-container">
+      {jobModal && (
+        <JobModal handleCloseMenu={setJobModal}>
+          <>
+            <h2>{jobModal.title}</h2>
+            <p>
+              <span>Description:</span> {jobModal.description}
+            </p>
+            <p>
+              <span>Salary:</span> {jobModal.salary}
+            </p>
+          </>
+        </JobModal>
+      )}
       <div className="pasos-left">
         <h2>{"Your Job Application: (4/4)"}</h2>
         <h3>
