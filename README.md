@@ -1,7 +1,3 @@
-# Multipage Form Submition Proyect
+# Multipage Form Submit proyect
 
-## Imaginary job board page for job application proces
-
-### React
-
-### Firebase
+This application serves as an exercise project aimed at constructing a multi-page form with Firebase authentication, storage, and database integration as the backend infrastructure. Essentially, it simulates the process of applying for a job opportunity
