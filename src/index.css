@@ -644,6 +644,10 @@ footer {
   align-items: center;
   background-color: var(--color-acentado);
   color: var(--color-white);
-  padding-block: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
   margin-top: auto;
+}
+footer a {
+  text-decoration: underline;
 }

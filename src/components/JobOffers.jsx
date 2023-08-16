@@ -2,7 +2,6 @@ import { data } from "../assets/data";
 import { useEffect, useState } from "react";
 import { auth } from "../utilities/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-// import useToggle from "../utilities/useToggle";
 import JobCard from "./JobCard";
 import PasoUno from "./job-apply-form/PasoUno";
 import PasoDos from "./job-apply-form/PasoDos";
@@ -46,6 +45,27 @@ export default function JobOffers() {
     );
   });
 
+  function handleH1() {
+    switch (pasos) {
+      case "inicio":
+        return "Job Offers";
+      case "paso-uno":
+        return "Let’s Go!";
+      case "paso-dos":
+        return "About You";
+      case "paso-tres":
+        return "Will You Fitt?";
+      case "paso-cuatro":
+        return "Your Account";
+      case "login":
+        return "Let’s Go!";
+      case "confirm-offer":
+        return "Confirmation";
+      default:
+        return "Job Offers";
+    }
+  }
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -68,7 +88,8 @@ export default function JobOffers() {
   return (
     <main className="job-offers">
       {/* Falta eso de H1 */}
-      {pasos === "inicio" ? <h1>Job Offers</h1> : <h1>Let’s Go!</h1>}
+      {/* {pasos === "inicio" ? <h1>Job Offers</h1> : <h1>Let’s Go!</h1>} */}
+      {<h1>{handleH1()}</h1>}
       <div className="job-offers-container">
         {pasos === "inicio" && jobCardMapeo}
         {pasos === "paso-uno" && (

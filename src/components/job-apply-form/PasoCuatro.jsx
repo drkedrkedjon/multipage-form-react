@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { onValue, ref as refDB, remove, set } from "firebase/database";
+import { onValue, ref as refDB, remove } from "firebase/database";
 import { db } from "../../utilities/firebase";
 import { auth } from "../../utilities/firebase";
 import { signOut, deleteUser } from "firebase/auth";
@@ -86,6 +86,7 @@ export default function PasoCuatro({ setPasos, userUID, setUserUID, setForm }) {
       }
     );
     return cancelOnValue;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userUID]);
 
   return (

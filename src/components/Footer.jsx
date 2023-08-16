@@ -6,7 +6,7 @@ export default function Footer() {
           Created by{" "}
           <a href="https://bubulazy.com">
             {" "}
-            <span>Sasa</span>
+            <span>Sasha</span>
           </a>
         </p>
       </div>

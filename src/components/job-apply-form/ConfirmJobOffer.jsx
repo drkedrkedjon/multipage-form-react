@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { onValue, ref as refDB, set, update } from "firebase/database";
+import { onValue, ref as refDB, update } from "firebase/database";
 import { db } from "../../utilities/firebase";
 import { data } from "../../assets/data.jsx";
 
