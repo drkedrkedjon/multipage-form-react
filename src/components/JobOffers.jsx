@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { data } from "../assets/data";
 import { useEffect, useState } from "react";
 import { auth } from "../utilities/firebase";
@@ -10,11 +11,10 @@ import PasoCuatro from "./job-apply-form/PasoCuatro";
 import Login from "./job-apply-form/Login";
 import ConfirmJobOffer from "./job-apply-form/ConfirmJobOffer";
 
-export default function JobOffers() {
+export default function JobOffers({ pasos, setPasos }) {
   const [userUID, setUserUID] = useState("");
   const [isLogged, setIsLogged] = useState(false);
   // inicio, login, paso-uno, paso-dos, paso-tres, paso-cuatro, confirm-offer
-  const [pasos, setPasos] = useState("inicio");
   const [form, setForm] = useState({
     appliedJobs: [],
     email: "",
@@ -124,7 +124,12 @@ export default function JobOffers() {
           <Login setPasos={setPasos} setUserUID={setUserUID} />
         )}
         {pasos === "confirm-offer" && (
-          <ConfirmJobOffer setPasos={setPasos} userUID={userUID} form={form} />
+          <ConfirmJobOffer
+            setPasos={setPasos}
+            userUID={userUID}
+            form={form}
+            setForm={setForm}
+          />
         )}
       </div>
     </main>

@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import Drawer from "./Drawer";
 import useToggle from "../utilities/useToggle";
 import { Menu, Umbrella } from "react-feather";
 
-export default function Header() {
+export default function Header({ setPasos }) {
   const [isMenuOpen, setIsMenuOpen] = useToggle(false);
 
   return (
@@ -10,7 +11,9 @@ export default function Header() {
       <div className="header-container">
         <div className="header-logo">
           <Umbrella strokeWidth={3} color="var(--color-green)" size={26} />
-          <span>Weather App</span>
+          <a className="link-logo" onClick={() => setPasos("inicio")}>
+            Weather App
+          </a>
         </div>
 
         <nav className="header-menu">
@@ -25,7 +28,7 @@ export default function Header() {
             <Drawer handleCloseMenu={setIsMenuOpen}>
               <ul className="nav-list">
                 <li>
-                  <a href="https://bubulazy.com">My portafolio</a>
+                  <a href="https://bubulazy.com">My portfolio</a>
                 </li>
                 <li>
                   <a href="https://github.com/drkedrkedjon">GitHub</a>

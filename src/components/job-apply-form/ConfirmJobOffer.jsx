@@ -6,7 +6,7 @@ import { onValue, ref as refDB, update } from "firebase/database";
 import { db } from "../../utilities/firebase";
 import { data } from "../../assets/data.jsx";
 
-export default function ConfirmJobOffer({ setPasos, form, userUID }) {
+export default function ConfirmJobOffer({ setPasos, form, setForm, userUID }) {
   const [userData, setUserData] = useState({});
   const [dataID, setDataID] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
@@ -22,6 +22,21 @@ export default function ConfirmJobOffer({ setPasos, form, userUID }) {
       .catch((error) => {
         setErrorMsg(error.message);
       });
+  }
+
+  function handleLink(where) {
+    setForm({
+      appliedJobs: [],
+      email: "",
+      name: "",
+      phone: "",
+      waterResistant: false,
+      experience: "",
+      techStack: "",
+      fileURL: "",
+      fileName: "",
+    });
+    setPasos(where);
   }
 
   const findJob = data.find((item) => {
@@ -70,7 +85,7 @@ export default function ConfirmJobOffer({ setPasos, form, userUID }) {
               take your pick. It's decision time, my friend! 🚀
             </p>
             <div className="pasos-left-offertas-duplicado">
-              <a className="link-orange" onClick={() => setPasos("inicio")}>
+              <a className="link-orange" onClick={() => handleLink("inicio")}>
                 Return to job offers
               </a>
               <a

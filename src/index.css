@@ -241,6 +241,9 @@ header {
   gap: 1rem;
   font-size: var(--ff-500);
 }
+.link-logo {
+  cursor: pointer;
+}
 .header-menu {
   display: flex;
   align-items: center;

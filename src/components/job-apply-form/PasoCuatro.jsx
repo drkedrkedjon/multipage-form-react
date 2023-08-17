@@ -31,12 +31,14 @@ export default function PasoCuatro({ setPasos, userUID, setUserUID, setForm }) {
       .then(() => {
         const userRef = refST(storage, `${userUID}`);
         const cvRef = refST(userRef, userData.fileName); // Aqui esta error
-        deleteObject(cvRef).then(() => {
-          deleteUser(auth.currentUser).then(() => {
-            setPasos("inicio");
-            setUserUID("");
-          });
-        });
+        deleteObject(cvRef);
+      })
+      .then(() => {
+        deleteUser(auth.currentUser);
+      })
+      .then(() => {
+        setPasos("inicio");
+        setUserUID("");
       })
       .catch((error) => {
         setErrorMsg(error.message);
