@@ -35,6 +35,7 @@ export default function PasoCuatro({ setPasos, userUID, setUserUID, setForm }) {
       })
       .then(() => {
         deleteUser(auth.currentUser);
+        signOut(auth);
       })
       .then(() => {
         setPasos("inicio");
