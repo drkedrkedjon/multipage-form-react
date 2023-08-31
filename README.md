@@ -6,7 +6,8 @@ The user have two paths, first is new user that have to go through the three pag
 
 If he is existing user we also do check if he is applying for the same job twice. If he is, we show him a message that he has already applied for that job and gave him two options to continue to the account page or return to job listings.
 
-I have used Vite, React & Firebase to build this project.
+I have used Vite, React & Firebase to build this project. External libraries I have used are: Radix Primitives acordeon, react-feather, react-focus-lock, react-markdown, react-remove-scroll.
+
+New API I have learned from React-dom is portals, createPortal
 
 Live site: https://multipage-form-sasa.netlify.app
-

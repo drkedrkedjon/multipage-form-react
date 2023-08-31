@@ -4,6 +4,7 @@ import FocusLock from "react-focus-lock";
 import { RemoveScroll } from "react-remove-scroll";
 import { X as Close } from "react-feather";
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 
 export default function Drawer({ handleCloseMenu, children }) {
   useEffect(() => {
@@ -23,7 +24,7 @@ export default function Drawer({ handleCloseMenu, children }) {
     return () => window.removeEventListener("keydown", handleEsc);
   }, []);
 
-  return (
+  return createPortal(
     <div className="drawer-container">
       <div onClick={handleCloseMenu} className="drawer-backdrop" />
       <FocusLock>
@@ -36,6 +37,7 @@ export default function Drawer({ handleCloseMenu, children }) {
           </div>
         </RemoveScroll>
       </FocusLock>
-    </div>
+    </div>,
+    document.querySelector("#drawer-root")
   );
 }
