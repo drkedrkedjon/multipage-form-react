@@ -10,5 +10,4 @@ I have used Vite, React & Firebase to build this project. External libraries I h
 
 New API I have learned from React-dom is portals, createPortal
 
-
 Live site: https://multipage-form-sasa.netlify.app
